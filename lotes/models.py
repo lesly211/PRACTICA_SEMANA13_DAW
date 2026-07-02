@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 
 
 class LoteForestal(models.Model):
-    """
-    Representa un lote de madera trazado desde el origen (bosque) hasta
-    su estado actual dentro de la cadena de custodia de BioTrace Labs.
-    """
 
     class Estado(models.TextChoices):
         REGISTRADO = 'registrado', 'Registrado'
@@ -23,7 +19,6 @@ class LoteForestal(models.Model):
         User, on_delete=models.SET_NULL, null=True, blank=True,
         related_name='lotes_registrados'
     )
-    # Campo sensible de ejemplo: NUNCA se expone en el serializer publico
     costo_interno = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     fecha_registro = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
